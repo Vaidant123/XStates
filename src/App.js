@@ -21,7 +21,6 @@ function XStates() {
   }, [selectedCountry]);
 
   useEffect(() => {
-    // Fetch cities when selectedState changes
     if (selectedState) {
       fetchCities(selectedCountry, selectedState);
     }
@@ -75,14 +74,14 @@ function XStates() {
   const handleCountryChange = (event) => {
     const selectedCountry = event.target.value;
     setSelectedCountry(selectedCountry);
-    setSelectedState(""); // Reset state when country changes
-    setSelectedCity(""); // Reset city when country changes
+    setSelectedState(""); 
+    setSelectedCity("");
   };
 
   const handleStateChange = (event) => {
     const selectedState = event.target.value;
     setSelectedState(selectedState);
-    setSelectedCity(""); // Reset city when state changes
+    setSelectedCity(""); 
   };
 
   const handleCityChange = (event) => {
@@ -107,30 +106,22 @@ function XStates() {
               </option>
             ))}
           </select>
-          {selectedCountry && (
-            <select
-              id="state"
-              onChange={handleStateChange}
-              value={selectedState}
-            >
-              <option value="">Select State</option>
-              {states.map((state) => (
-                <option key={state} value={state}>
-                  {state}
-                </option>
-              ))}
-            </select>
-          )}
-          {selectedState && (
-            <select id="city" onChange={handleCityChange} value={selectedCity}>
-              <option value="">Select City</option>
-              {cities.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select>
-          )}
+          <select id="state" onChange={handleStateChange} value={selectedState}>
+            <option value="">Select State</option>
+            {states.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+          <select id="city" onChange={handleCityChange} value={selectedCity}>
+            <option value="">Select City</option>
+            {cities.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
         </div>
       </form>
       {selectedCity && (
